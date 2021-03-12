@@ -1,22 +1,19 @@
 package br.com.supera.game.store;
 
-import java.util.List;
-
+import br.com.supera.game.store.product.domain.Product;
 import com.github.dbunit.rules.DBUnitRule;
 import com.github.dbunit.rules.api.configuration.DBUnit;
 import com.github.dbunit.rules.api.dataset.DataSet;
 import com.github.dbunit.rules.util.EntityManagerProvider;
-
-import br.com.supera.game.store.product.domain.Product;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.List;
+
 import static com.github.dbunit.rules.util.EntityManagerProvider.em;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
 public class ProductDaoExampleTest {
