@@ -28,10 +28,14 @@ public class OrderBusiness {
     public void createNewOrder(Order order){
         if(!order.getOrderProducts().isEmpty() || (order.getOrderProducts() != null)){
 
+            order.setSubtotal(new BigDecimal(0.0));
+            order.setTotal(new BigDecimal(0.0));
+            order.setShipping(new BigDecimal(0.0));
             order.setStatus(StatusOrder.AGUARDANDO.getDescription());
             order.setId(null);
 
             order.getOrderProducts().forEach(orderProduct -> {
+                orderProduct.getPk().setOrder(order);
                 order.setSubtotal(order.getSubtotal().add((orderProduct.getProduct().getPrice().
                         multiply(BigDecimal.valueOf(orderProduct.getQuantity())))));
                 order.setShipping(order.getShipping().add(BigDecimal.valueOf(10.00)));
@@ -51,9 +55,13 @@ public class OrderBusiness {
     public void editOrder( Order order ){
         if(!order.getOrderProducts().isEmpty() || (order.getOrderProducts() != null)){
 
+            order.setSubtotal(new BigDecimal(0.0));
+            order.setTotal(new BigDecimal(0.0));
+            order.setShipping(new BigDecimal(0.0));
             order.setStatus(StatusOrder.AGUARDANDO.getDescription());
 
             order.getOrderProducts().forEach(orderProduct -> {
+                orderProduct.getPk().setOrder(order);
                 order.setSubtotal(order.getSubtotal().add((orderProduct.getProduct().getPrice().
                         multiply(BigDecimal.valueOf(orderProduct.getQuantity())))));
                 order.setShipping(order.getShipping().add(BigDecimal.valueOf(10.00)));
